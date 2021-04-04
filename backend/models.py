@@ -2,9 +2,12 @@ import os
 from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
+from decouple import config
 
+database_username = config('USER')
+database_password = config('KEY')
 database_name = "trivia"
-database_path = "postgres://{}/{}".format('localhost:5432', database_name)
+database_path = "postgres://{}:{}@{}/{}".format(database_username,database_password,'localhost:5432', database_name)
 
 db = SQLAlchemy()
 
